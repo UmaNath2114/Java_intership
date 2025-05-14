@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RequestMapping("/api/student")
 @RestController
@@ -30,13 +31,13 @@ public class StudentController {
         }
 
     }
-@GetMapping("/add-student1")
-public  HashMap<String,String> getStudentData(@RequestBody Student s) {
+   @GetMapping("/add-student1")
+public  HashMap<String,String> getStudentData(){
     HashMap<String, String> response = new HashMap<String, String>();
     try {
-        Student addedStudent = service.addStudentDetails(s);
-        response.put("Message", "Student added successfully");
-        response.put("Student name", addedStudent.getName());
+        List<Student> PresentStudent = service.getStudentDataDetails();
+        response.put("Message", "Student Data Fetched successfully");
+        response.put("Student name", PresentStudent.toString());
         return response;
     } catch (Exception e) {
         response.put("error", "Some error occured");
