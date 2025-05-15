@@ -1,12 +1,15 @@
 package com.project.student.Entity;
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     //Id is primary key
     @Id
@@ -15,49 +18,6 @@ public class Student {
     private String name;
     private String rollNo;
     private String email;
-
-    public Student (){
-
-      }
-
-      public Student(Long id,String name,String rollNo,String email){
-          this.name=name;
-          this.rollNo=rollNo;
-          this.email=email;
-      }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setName(String name){
-        this.name=name;
-    }
-    public String getName(){
-        return name;
-    }
-    public void setRollNo(String rollNo){
-        this.rollNo=rollNo;
-    }
-    public String getRollNo() {
-        return rollNo;
-    }
-    public void setEmail(String email){
-        this.email=email;
-    }
-    public String getEmail(){
-        return email;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", rollNo='" + rollNo + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-};
+}
 
 
