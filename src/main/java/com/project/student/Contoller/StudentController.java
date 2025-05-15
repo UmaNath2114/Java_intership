@@ -17,8 +17,8 @@ public class StudentController {
     private StudentService service;
 
     @PostMapping("/add-student")
-    public  HashMap<String,String> addStudent(@RequestBody Student s){
-        HashMap<String,String> response = new HashMap<String,String>();
+    public  HashMap<String,Object> addStudent(@RequestBody Student s){
+        HashMap<String,Object> response = new HashMap<String,Object>();
         try{
             Student addedStudent = service.addStudentDetails(s);
             response.put("Message","Student added successfully");
@@ -32,12 +32,12 @@ public class StudentController {
 
     }
    @GetMapping("/add-student1")
-public  HashMap<String,String> getStudentData(){
-    HashMap<String, String> response = new HashMap<String, String>();
+public  HashMap<String,Object> getStudentData(){
+    HashMap<String, Object> response = new HashMap<String,Object>();
     try {
-        List<Student> PresentStudent = service.getStudentDataDetails();
+        List<Student> presentStudent = service.getStudentDataDetails();
         response.put("Message", "Student Data Fetched successfully");
-        response.put("Student name", PresentStudent.toString());
+        response.put("Student name", presentStudent);
         return response;
     } catch (Exception e) {
         response.put("error", "Some error occured");

@@ -26,9 +26,6 @@ public class Student {
           this.email=email;
       }
 
-    public void setId(long id) {
-        this.id = id;
-    }
     public long getId() {
         return id;
     }
