@@ -6,6 +6,7 @@ import com.project.student.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Provider;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class StudentController {
         }
 
     }
-   @GetMapping("/add-student1")
+   @GetMapping("/get-student")
 public  HashMap<String,Object> getStudentData(){
     HashMap<String, Object> response = new HashMap<String,Object>();
     try {
@@ -43,7 +44,35 @@ public  HashMap<String,Object> getStudentData(){
         response.put("error", "Some error occured");
         return response;
     }
-}
+  }
+  @DeleteMapping("/deleted-student")
+    public HashMap<String,Object> deleteStudent(@RequestParam Long id){
+        HashMap<String, Object> response = new HashMap<String,Object>();
+        try {
+             Boolean deleteStudent= service.deleteStudentDetails(id);
+             response.put("Message","Student Data Deleted Successfully");
+             response.put("Deleted",deleteStudent);
+             return response;
+        }
+        catch (Exception e){
+            response.put("error",e.getMessage());
+            return response;
+        }
+  }
+  @PutMapping("/update-student")
+    public HashMap<String,Object> updateStudent(@RequestParam Long id,@RequestBody Student s){
+        HashMap<String,Object> response = new HashMap<String,Object>();
+        try {
+            Student updateStudent= service.updateStudentDetails(id,s);
+            response.put("message","Student Data Updated Successfully");
+            response.put("updated student",updateStudent);
+            return response;
+        }
+        catch(Exception e){
+             response.put("error",e.getMessage());
+             return response;
+        }
+  }
 }
 
 
